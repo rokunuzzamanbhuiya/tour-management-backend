@@ -1,4 +1,7 @@
-const { getToursService } = require("../services/tours.service");
+const {
+  getToursService,
+  createTourService,
+} = require("../services/tours.service");
 
 exports.getTours = async (req, res, next) => {
   try {
@@ -38,8 +41,8 @@ exports.getTours = async (req, res, next) => {
 
     if (req.query.page) {
       const { page = 1, limit = 5 } = req.query; // "3" "10"
-      //50 products
-      // each page 10 product
+      //50 tours
+      // each page 10 tour
       //page 1--> 1-10
       //page 2--> 11-20
       //page 3--> 21-30     --> page 3 --> skip 1-20  --> 3-1 --> 2*10
@@ -61,6 +64,26 @@ exports.getTours = async (req, res, next) => {
     res.status(400).json({
       status: "Fail",
       message: "Can't get the data",
+      error: error.message,
+    });
+  }
+};
+
+exports.createTour = async (req, res, next) => {
+  try {
+    // save or create
+
+    const result = await createTourService(req.body);
+
+    res.status(200).json({
+      status: "success",
+      messgae: "Data inserted successfully!",
+      data: result,
+    });
+  } catch (error) {
+    res.status(400).json({
+      status: "fail",
+      message: " Data is not inserted ",
       error: error.message,
     });
   }
