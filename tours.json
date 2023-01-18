@@ -6,10 +6,7 @@
         "price": 450,
         "visitor": 10,
         "views": 5,
-        "status": [
-            "book-now",
-            "wish-list"
-        ]
+        "status": "wish-list"
     },
     {
         "name": "New York",
@@ -18,10 +15,7 @@
         "price": 230,
         "visitor": 12,
         "views": 6,
-        "status": [
-            "book-now",
-            "wish-list"
-        ]
+        "status": "book-now"
     },
     {
         "name": "Cox's Bazar",
@@ -30,10 +24,7 @@
         "price": 150,
         "visitor": 8,
         "views": 5,
-        "status": [
-            "book-now",
-            "wish-list"
-        ]
+        "status": "book-now"
     },
     {
         "name": "London",
@@ -42,10 +33,7 @@
         "price": 300,
         "visitor": 14,
         "views": 5,
-        "status": [
-            "book-now",
-            "wish-list"
-        ]
+        "status": "book-now"
     },
     {
         "name": "Dubai",
@@ -54,10 +42,7 @@
         "price": 220,
         "visitor": 16,
         "views": 8,
-        "status": [
-            "book-now",
-            "wish-list"
-        ]
+        "status": "wish-list"
     },
     {
         "name": "Taj Mahal",
@@ -66,10 +51,7 @@
         "price": 100,
         "visitor": 10,
         "views": 4,
-        "status": [
-            "book-now",
-            "wish-list"
-        ]
+        "status": "book-now"
     },
     {
         "name": "Sydney",
@@ -78,10 +60,7 @@
         "price": 500,
         "visitor": 12,
         "views": 8,
-        "status": [
-            "book-now",
-            "wish-list"
-        ]
+        "status": "wish-list"
     },
     {
         "name": "Moscow",
@@ -90,10 +69,7 @@
         "price": 400,
         "visitor": 16,
         "views": 10,
-        "status": [
-            "book-now",
-            "wish-list"
-        ]
+        "status": "book-now"
     },
     {
         "name": "Lisbon",
@@ -102,10 +78,7 @@
         "price": 730,
         "visitor": 10,
         "views": 6,
-        "status": [
-            "book-now",
-            "wish-list"
-        ]
+        "status": "wish-list"
     },
     {
         "name": "Egypt",
@@ -114,9 +87,6 @@
         "price": 530,
         "visitor": 12,
         "views": 6,
-        "status": [
-            "book-now",
-            "wish-list"
-        ]
+        "status": "book-now"
     }
 ]

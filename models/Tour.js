@@ -1,7 +1,8 @@
 const mongoose = require("mongoose");
+const validator = require("validator");
 
 // schema
-const toursShema = mongoose.Schema(
+const toursSchema = mongoose.Schema(
   {
     name: {
       type: String,
@@ -17,7 +18,10 @@ const toursShema = mongoose.Schema(
       required: [true, "Please provide a description for this tours"],
     },
 
-    image: String,
+    image: {
+      type: String,
+      validate: [validator.isURL, "Please provide a valid image url"],
+    },
 
     price: {
       type: Number,
@@ -63,6 +67,6 @@ const toursShema = mongoose.Schema(
 );
 
 // Model
-const Tours = mongoose.model("Tours", toursShema);
+const Tour = mongoose.model("Tour", toursSchema);
 
-module.exports = Tours;
+module.exports = Tour;

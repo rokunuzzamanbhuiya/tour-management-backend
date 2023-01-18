@@ -6,10 +6,11 @@ const errorHandler = require("./middleware/errorHandler");
 const port = process.env.PORT || 7000;
 
 mongoose.set("strictQuery", true);
+// mongoose.set("strictQuery", false);
 
 // database connection
 mongoose.connect(process.env.DATABASE).then(() => {
-  console.log(`Database connection is successful 🛢`.red.bold);
+  console.log(`Database connection is successful {🛢}`.red);
 });
 
 app.listen(port, () => {
