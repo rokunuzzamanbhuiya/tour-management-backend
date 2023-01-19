@@ -3,6 +3,7 @@ const {
   createTourService,
   getTourByIdService,
   updateTourByIdService,
+  getTrendingTourService,
 } = require("../services/tours.service");
 
 //---Get al Tours---//
@@ -130,6 +131,26 @@ exports.updateTourById = async (req, res, next) => {
     res.status(400).json({
       status: "Fail",
       message: "Something Went wrong, no data updated",
+      error: error.message,
+    });
+  }
+};
+
+//---Get Trending Tour---//
+
+exports.getTrendingTour = async (req, res, next) => {
+  try {
+    const result = await getTrendingTourService();
+
+    res.status(200).json({
+      status: "Success",
+      message: "Found Trending Tour",
+      data: result,
+    });
+  } catch (error) {
+    res.status(400).json({
+      status: "Fail",
+      message: "Something went wrong, No Trending Tour Found",
       error: error.message,
     });
   }

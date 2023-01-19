@@ -7,6 +7,8 @@ router
   .get(toursController.getTours)
   .post(toursController.createTour);
 
+router.route("/trending").get(toursController.getTrendingTour);
+
 router
   .route("/:id")
   .get(toursController.getTourById)
