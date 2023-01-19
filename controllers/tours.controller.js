@@ -4,6 +4,7 @@ const {
   getTourByIdService,
   updateTourByIdService,
   getTrendingTourService,
+  getCheapestTourService,
 } = require("../services/tours.service");
 
 //---Get al Tours---//
@@ -115,7 +116,6 @@ exports.getTourById = async (req, res, next) => {
 };
 
 //---Update a Tour---//
-
 exports.updateTourById = async (req, res, next) => {
   try {
     const { id } = req.params;
@@ -137,7 +137,6 @@ exports.updateTourById = async (req, res, next) => {
 };
 
 //---Get Trending Tour---//
-
 exports.getTrendingTour = async (req, res, next) => {
   try {
     const result = await getTrendingTourService();
@@ -151,6 +150,25 @@ exports.getTrendingTour = async (req, res, next) => {
     res.status(400).json({
       status: "Fail",
       message: "Something went wrong, No Trending Tour Found",
+      error: error.message,
+    });
+  }
+};
+
+//---Get Cheapest Tour---//
+exports.getCheapestTour = async (req, res, next) => {
+  try {
+    const result = await getCheapestTourService();
+
+    res.status(200).json({
+      status: "Success",
+      message: "Found Cheapest Tour",
+      data: result,
+    });
+  } catch (error) {
+    res.status(400).json({
+      status: "Fail",
+      message: "Something Went wrong, No Cheapest Tour found",
       error: error.message,
     });
   }
