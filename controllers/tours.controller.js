@@ -5,9 +5,10 @@ const {
   updateTourByIdService,
   getTrendingTourService,
   getCheapestTourService,
+  deleteTourByIdService,
 } = require("../services/tours.service");
 
-//---Get al Tours---//
+//---Get all Tours---//
 exports.getTours = async (req, res, next) => {
   try {
     //{price:{$gt:50}
@@ -62,7 +63,7 @@ exports.getTours = async (req, res, next) => {
     const tours = await getToursService(filters, queries);
 
     res.status(200).json({
-      status: "success",
+      status: "Success",
       data: tours,
     });
   } catch (error) {
@@ -82,13 +83,13 @@ exports.createTour = async (req, res, next) => {
     const result = await createTourService(req.body);
 
     res.status(200).json({
-      status: "success",
+      status: "Success",
       messgae: "Data inserted successfully!",
       data: result,
     });
   } catch (error) {
     res.status(400).json({
-      status: "fail",
+      status: "Fail",
       message: " Data is not inserted ",
       error: error.message,
     });
@@ -169,6 +170,33 @@ exports.getCheapestTour = async (req, res, next) => {
     res.status(400).json({
       status: "Fail",
       message: "Something Went wrong, No Cheapest Tour found",
+      error: error.message,
+    });
+  }
+};
+
+//---Delete Tour By Id---//
+exports.deleteTourById = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+
+    const result = await deleteTourByIdService(id);
+
+    if (!result.deletedCount) {
+      return res.status(400).json({
+        status: "Fail",
+        error: "Couldn't delete the Tour",
+      });
+    }
+
+    res.status(200).json({
+      status: "Success",
+      message: "Successfully deleted the Tour",
+    });
+  } catch (error) {
+    res.status(400).json({
+      status: "Fail",
+      message: "Couldn't delete the Tour",
       error: error.message,
     });
   }
