@@ -16,3 +16,12 @@ exports.createTourService = async (data) => {
   const tour = await Tour.create(data);
   return tour;
 };
+
+exports.getTourByIdService = async (id) => {
+  const tour = await Tour.findById(id);
+  const incViewCount = await Tour.updateOne(
+    { _id: id },
+    { $inc: { views: 1 } }
+  );
+  return { incViewCount, tour };
+};

@@ -20,6 +20,7 @@ const toursSchema = mongoose.Schema(
 
     image: {
       type: String,
+      required: true,
       validate: [validator.isURL, "Please provide a valid image url"],
     },
 

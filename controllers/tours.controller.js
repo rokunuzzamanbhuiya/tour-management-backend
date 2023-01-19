@@ -1,8 +1,10 @@
 const {
   getToursService,
   createTourService,
+  getTourByIdService,
 } = require("../services/tours.service");
 
+//---Get al Tours---//
 exports.getTours = async (req, res, next) => {
   try {
     //{price:{$gt:50}
@@ -69,6 +71,7 @@ exports.getTours = async (req, res, next) => {
   }
 };
 
+//---Create a Tour---//
 exports.createTour = async (req, res, next) => {
   try {
     // save or create
@@ -84,6 +87,26 @@ exports.createTour = async (req, res, next) => {
     res.status(400).json({
       status: "fail",
       message: " Data is not inserted ",
+      error: error.message,
+    });
+  }
+};
+
+//---Get Tour By Id---//
+exports.getTourById = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const result = await getTourByIdService(id, req.body);
+
+    res.status(200).json({
+      status: "Success",
+      message: `Found the Tour, Id: ${id}`,
+      data: result,
+    });
+  } catch (error) {
+    res.status(400).json({
+      status: "Fail",
+      message: "400 Bad Request",
       error: error.message,
     });
   }
