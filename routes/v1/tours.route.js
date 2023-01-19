@@ -7,8 +7,10 @@ router
   .get(toursController.getTours)
   .post(toursController.createTour);
 
-router.route("/:id").get(toursController.getTourById);
-// .patch(productController.updateProductById)
-// .delete(productController.deleteProductById);
+router
+  .route("/:id")
+  .get(toursController.getTourById)
+  .patch(toursController.updateTourById);
+// .delete(ToursController.deleteTourById);
 
 module.exports = router;

@@ -2,6 +2,7 @@ const {
   getToursService,
   createTourService,
   getTourByIdService,
+  updateTourByIdService,
 } = require("../services/tours.service");
 
 //---Get al Tours---//
@@ -93,7 +94,7 @@ exports.createTour = async (req, res, next) => {
 };
 
 //---Get Tour By Id---//
-exports.getTourById = async (req, res) => {
+exports.getTourById = async (req, res, next) => {
   try {
     const { id } = req.params;
     const result = await getTourByIdService(id, req.body);
@@ -106,7 +107,29 @@ exports.getTourById = async (req, res) => {
   } catch (error) {
     res.status(400).json({
       status: "Fail",
-      message: "400 Bad Request",
+      message: "Something Went wrong, no data found",
+      error: error.message,
+    });
+  }
+};
+
+//---Update a Tour---//
+
+exports.updateTourById = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+
+    const result = await updateTourByIdService(id, req.body);
+
+    res.status(200).json({
+      status: "Success",
+      message: "Tour updated successfully",
+      data: result,
+    });
+  } catch (error) {
+    res.status(400).json({
+      status: "Fail",
+      message: "Something Went wrong, no data updated",
       error: error.message,
     });
   }
