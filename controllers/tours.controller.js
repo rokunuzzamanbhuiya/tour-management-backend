@@ -6,6 +6,8 @@ const {
   getTrendingTourService,
   getCheapestTourService,
   deleteTourByIdService,
+  bulkDeleteTourService,
+  bulkUpdateTourService,
 } = require("../services/tours.service");
 
 //---Get all Tours---//
@@ -197,6 +199,44 @@ exports.deleteTourById = async (req, res, next) => {
     res.status(400).json({
       status: "Fail",
       message: "Couldn't delete the Tour",
+      error: error.message,
+    });
+  }
+};
+
+//---Bulk Delete Tours---//
+exports.bulkDeleteTours = async (req, res, next) => {
+  try {
+    console.log(req.body);
+    const result = await bulkDeleteTourService(req.body.ids);
+
+    res.status(200).json({
+      stauts: "Success",
+      message: "Successfully deleted the given Tours",
+    });
+  } catch (error) {
+    res.status(400).json({
+      status: "Fail",
+      message: "Couldn't delete the given Tours",
+      error: error.message,
+    });
+  }
+};
+
+//---Bulk Update Tours---//
+exports.bulkUpdateTours = async (req, res, next) => {
+  try {
+    console.log(req.body);
+    const result = await bulkUpdateTourService(req.body);
+
+    res.status(200).json({
+      stauts: "Success",
+      message: "Successfully updated the Tours",
+    });
+  } catch (error) {
+    res.status(400).json({
+      status: "Fail",
+      message: "Couldn't update the Tours",
       error: error.message,
     });
   }

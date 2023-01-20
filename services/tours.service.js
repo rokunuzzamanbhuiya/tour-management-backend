@@ -46,3 +46,27 @@ exports.deleteTourByIdService = async (id) => {
   const result = await Tour.deleteOne({ _id: id });
   return result;
 };
+
+exports.bulkDeleteTourService = async (ids) => {
+  const result = await Tour.deleteMany({});
+
+  return result;
+};
+
+exports.bulkUpdateTourService = async (data) => {
+  // console.log(data.ids,data.data)
+  // const result = await Tour.updateMany({ _id: data.ids }, data.data, {
+  //     runValidators: true
+  // });
+
+  const tours = [];
+
+  data.ids.forEach((tour) => {
+    tours.push(Tour.updateOne({ _id: tour.id }, tour.data));
+  });
+
+  const result = await Promise.all(tours);
+  console.log(result);
+
+  return result;
+};
